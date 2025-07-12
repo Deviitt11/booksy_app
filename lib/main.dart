@@ -1,3 +1,4 @@
+import 'package:booksy_app/categories/categories_screen.dart';
 import 'package:booksy_app/home/home_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -32,7 +33,7 @@ class _BottomNavigationWidgetState extends State<BottomNavigationWidget> {
 
   static const List<Widget> _sections = [
     HomeScreen(),
-    Text("Biblioteca"),
+    CategoriesScreen(),
   ];
 
   @override
