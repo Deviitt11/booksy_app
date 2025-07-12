@@ -1,3 +1,4 @@
+import 'package:booksy_app/home/home_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -30,7 +31,7 @@ class _BottomNavigationWidgetState extends State<BottomNavigationWidget> {
   int _selectedIndex = 0;
 
   static const List<Widget> _sections = [
-    Text("Inicio"),
+    HomeScreen(),
     Text("Biblioteca"),
   ];
 
