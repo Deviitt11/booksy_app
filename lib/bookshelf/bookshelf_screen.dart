@@ -1,34 +1,12 @@
+import 'package:booksy_app/book_details/book_details_screen.dart';
 import 'package:booksy_app/model/book.dart';
+import 'package:booksy_app/services/books_service.dart';
 import 'package:booksy_app/state/state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class BookshelfScreen extends StatelessWidget {
   const BookshelfScreen({Key? key}) : super(key: key);
-
-  final List<Book> _books = const [
-    Book(
-      1,
-      "Tim – The Official Biography of Avicii",
-      "Mans Mosesson",
-      "The intimate biography of the iconic DJ who was lost too soon.",
-      "assets/images/avicii.jpg",
-    ),
-    Book(
-      2,
-      "Building the Yellow Wall: The Incredible Rise and Cult Appeal of Borussia Dortmund",
-      "Uli Hesse",
-      "Every fortnight, an incredible number of foreigners travel to Dortmund to watch football",
-      "assets/images/bvb.jpg",
-    ),
-    Book(
-      3,
-      "The Maze Runner",
-      "James Dashner",
-      "Book one in the blockbuster Maze Runner series that spawned a movie franchise and ushered in a worldwide phenomenon!",
-      "assets/images/mr.jpg",
-    ),
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -64,19 +42,48 @@ class BookshelfScreen extends StatelessWidget {
   }
 }
 
-class BookCoverItem extends StatelessWidget {
+class BookCoverItem extends StatefulWidget {
   final int _bookId;
 
   const BookCoverItem(this._bookId, {Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return Text("Libro id: $_bookId");
-    /*
-      InkWell(
-      onTap: () {},
-      child: Ink.image(fit: BoxFit.fill, image: AssetImage(_book.coverUrl)),
+  State<BookCoverItem> createState() => _BookCoverItemState();
+}
 
-     */
+class _BookCoverItemState extends State<BookCoverItem> {
+  Book? _book;
+
+  @override
+  void initState() {
+    super.initState();
+    _getBook(widget._bookId);
+  }
+
+  void _getBook(int bookId) async {
+    var book = await BooksService().getBook(bookId);
+    setState(() {
+      _book = book;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (_book == null) {
+      return const Center(child: CircularProgressIndicator());
+    }
+    return InkWell(
+      onTap: () {
+        _openBookDetails(_book!, context);
+      },
+      child: Ink.image(fit: BoxFit.fill, image: AssetImage(_book!.coverUrl)),
+    );
+  }
+
+  _openBookDetails(Book book, BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => BookDetailsScreen(book)),
+    );
   }
 }

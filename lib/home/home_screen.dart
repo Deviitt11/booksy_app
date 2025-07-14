@@ -2,43 +2,52 @@ import 'package:booksy_app/book_details/book_details_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../model/book.dart';
+import '../services/books_service.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
-  final List<Book> _books = const [
-    Book(
-        1,
-        "Tim – The Official Biography of Avicii",
-        "Mans Mosesson",
-        "The intimate biography of the iconic DJ who was lost too soon.",
-        "assets/images/avicii.jpg"),
-    Book(
-        2,
-        "Building the Yellow Wall: The Incredible Rise and Cult Appeal of Borussia Dortmund",
-        "Uli Hesse",
-        "Every fortnight, an incredible number of foreigners travel to Dortmund to watch football",
-        "assets/images/bvb.jpg"),
-    Book(
-        3,
-        "The Maze Runner",
-        "James Dashner",
-        "Book one in the blockbuster Maze Runner series that spawned a movie franchise and ushered in a worldwide phenomenon!",
-        "assets/images/mr.jpg"),
-  ];
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+
+  List<Book> _books = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _getLastBooks();
+  }
+
+  void _getLastBooks() async {
+    var lastBooks = await BooksService().getLastBook();
+    setState(() {
+      _books = lastBooks;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
+    var showProgress = _books.isEmpty;
+    var listLength = showProgress ? 3 : _books.length + 2;
     return Container(
-      margin: const EdgeInsets.all(16),
-      child: ListView.builder(
-        itemCount: _books.length + 2,
-        itemBuilder: (context, index) {
+        margin: const EdgeInsets.all(16),
+        child: ListView.builder(
+          itemCount: listLength,
+          itemBuilder: (context, index) {
           if(index == 0) {
             return const HeaderWidget();
           }
           if(index == 1) {
             return const ListItemHeader();
+          }
+          if(showProgress) {
+            return const Padding(
+              padding: EdgeInsets.only(top: 20),
+              child: Center(child: CircularProgressIndicator()),
+            );
           }
           return ListItemBook(_books[index - 2]);
         },
@@ -72,8 +81,6 @@ class ListItemHeader extends StatelessWidget {
           style: TextStyle(fontSize: 20),
       ));
   }
-
-
 }
 
 class ListItemBook extends StatelessWidget {
@@ -109,6 +116,8 @@ class ListItemBook extends StatelessWidget {
                               .textTheme
                               .titleLarge!
                               .copyWith(fontSize: 16),
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
                           ),
                           const SizedBox(height: 5),
                           Text(_book.author,
