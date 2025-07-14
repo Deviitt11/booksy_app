@@ -1,3 +1,4 @@
+import 'package:booksy_app/book_details/book_details_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../model/book.dart';
@@ -6,8 +7,24 @@ class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
   final List<Book> _books = const [
-    Book(1, "Avicii", "M", "a", "assets/images/avicii.jpg"),
-    Book(2, "BVB", "U", "a", "assets/images/bvb.jpg"),
+    Book(
+        1,
+        "Tim – The Official Biography of Avicii",
+        "Mans Mosesson",
+        "The intimate biography of the iconic DJ who was lost too soon.",
+        "assets/images/avicii.jpg"),
+    Book(
+        2,
+        "Building the Yellow Wall: The Incredible Rise and Cult Appeal of Borussia Dortmund",
+        "Uli Hesse",
+        "Every fortnight, an incredible number of foreigners travel to Dortmund to watch football",
+        "assets/images/bvb.jpg"),
+    Book(
+        3,
+        "The Maze Runner",
+        "James Dashner",
+        "Book one in the blockbuster Maze Runner series that spawned a movie franchise and ushered in a worldwide phenomenon!",
+        "assets/images/mr.jpg"),
   ];
 
   @override
@@ -116,6 +133,11 @@ class ListItemBook extends StatelessWidget {
   }
 
   void _openBookDetails(BuildContext context, Book book) {
-    // TODO
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => BookDetailsScreen(book),
+        ),
+    );
   }
 }
