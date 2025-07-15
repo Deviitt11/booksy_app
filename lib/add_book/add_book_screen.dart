@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:booksy_app/add_book/take_picture_screen.dart';
 import 'package:booksy_app/services/books_service.dart';
-import 'package:booksy_app/state.dart';
+import 'package:booksy_app/state/state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -116,15 +116,17 @@ class AddBookFormState extends State<AddBookForm> {
     setState(() {
       _savingBook = true;
     });
-    var newBookId = await BooksService().saveBook(title, author, summary);
+    //var newBookId = await BooksService().saveBook(title, author, summary);
+    /*
     if (_imagePath != null) {
       String imageUrl =
       await BooksService().uploadBookCover(_imagePath!, newBookId);
       await BooksService().updateCoverBook(newBookId, imageUrl);
     }
+     */
 
-    var bookshelfBloc = context.read<BookshelfBloc>();
-    bookshelfBloc.add(AddBookToBookshelf(newBookId));
+    //var bookshelfBloc = context.read<BookshelfBloc>();
+    //bookshelfBloc.add(AddBookToBookshelf(newBookId));
 
     Navigator.pop(context);
   }

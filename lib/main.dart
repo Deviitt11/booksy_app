@@ -4,8 +4,13 @@ import 'package:booksy_app/home/home_screen.dart';
 import 'package:booksy_app/state/state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+//import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
-void main() {
+void main() { // cambiar a async
+  /*
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+   */
   runApp(const BooksyApp());
 }
 
