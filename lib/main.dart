@@ -27,6 +27,7 @@ class BooksyApp extends StatelessWidget {
             primarySwatch: Colors.green,
         ),
         home: const BottomNavigationWidget(),
+        debugShowCheckedModeBanner: false,
       ));
   }
 }
