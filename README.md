@@ -1,21 +1,76 @@
-# booksy_app
+# 📚 Booksy App
 
-App Flutter de gestión de lectura personal
+Aplicación de gestión de libros desarrollada con **Flutter** y **Dart**.  
+Permite visualizar información detallada de libros con un diseño limpio, moderno y responsive.
 
-## Getting Started
+## 📸 Capturas de pantalla
 
-This project is a starting point for a Flutter application.
+| Lista de libros | Detalles del libro |
+|-----------------|---------------------|
+| ![Screenshot 1](assets/screenshots/booksy_app.webp) | ![Screenshot 2](assets/screenshots/booksy_app_2.webp) |
 
-A few resources to get you started if this is your first Flutter project:
+## ⚙️ Tecnologías utilizadas
+- Flutter & Dart  
+- Clean Architecture  
+- Bloc (gestión de estado)  
+- API REST para obtener la información de los libros  
+- Diseño responsive y limpio  
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## 🚀 Funcionalidades
+- Visualización de una lista de libros  
+- Consulta de información detallada de cada libro  
+- Diseño adaptativo para diferentes tamaños de pantalla  
+- Navegación fluida y moderna  
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## ▶️ Ejecución del proyecto
+```bash
+# Clonar el repositorio
+git clone https://github.com/deviitt11/booksy_app.git
 
-### Agradecimientos
+# Entrar en la carpeta del proyecto
+cd booksy_app
 
-Este proyecto fue posible gracias al curso de Flutter y Dart creado por Julio Andrés.  
-Puedes seguir su trabajo en GitHub: [https://github.com/juliooa](https://github.com/juliooa)
+# Instalar dependencias
+flutter pub get
+
+# Ejecutar en modo debug
+flutter run
+```
+# 📚 Booksy App
+
+Book management app built with **Flutter** and **Dart**.  
+It allows you to browse detailed book information with a clean, modern, and responsive design.
+
+## 📸 Screenshots
+
+| Book list | Book details |
+|-----------|---------------|
+| ![Screenshot 1](assets/screenshots/booksy_app.webp) | ![Screenshot 2](assets/screenshots/booksy_app_2.webp) |
+
+## ⚙️ Tech Stack
+- Flutter & Dart  
+- Clean Architecture  
+- Bloc (state management)  
+- REST API to fetch book information  
+- Clean and responsive UI  
+
+## 🚀 Features
+- Display a list of books  
+- View detailed information about each book  
+- Responsive design for different screen sizes  
+- Smooth and modern navigation  
+
+## ▶️ Run the project
+```bash
+# Clone the repository
+git clone https://github.com/deviitt11/booksy_app.git
+
+# Enter the project folder
+cd booksy_app
+
+# Install dependencies
+flutter pub get
+
+# Run in debug mode
+flutter run
+```
